@@ -50,31 +50,30 @@
 
 //leetcode submit region begin(Prohibit modification and deletion)
 class Solution {
-
     public static int maxArea(int[] height) {
         int left = 0;
-        int right = height.length - 1;
-        int initHigh = height[left] <= height[right] ? height[left] : height[right];
-        int area = (right - left) * initHigh;
+        int right =  (height.length - 1);
+        int initHigh = (height[left] <= height[right] ? height[left] : height[right]);
+        int area =  ((right - left) * initHigh);
         int leftHigh = 0;
         int rightHigh = 0;
         while (left < right) {
-             leftHigh = height[left];
+             leftHigh =  height[left];
              rightHigh = height[right];
             if (rightHigh >= leftHigh) {
-                area = areaCompare(area, left, right, leftHigh, rightHigh);
                 left++;
+                area = areaCompare(area, left, right, height[left], rightHigh);
             }
             if (rightHigh < leftHigh) {
-                area = areaCompare(area, left, right, leftHigh, rightHigh);
                 right--;
+                area = areaCompare(area, left, right, leftHigh, height[right]);
             }
         }
         return area;
     }
     private static int areaCompare(int area, int left, int right, int leftHigh, int rightHigh) {
-        int i = (right - left) * (leftHigh <= rightHigh ? leftHigh : rightHigh);
-        return area>= i ?area:i;
+        int i =  ((right - left) * (leftHigh <= rightHigh ? leftHigh : rightHigh));
+        return area>= i ? area :i;
     }
 }
 //leetcode submit region end(Prohibit modification and deletion)

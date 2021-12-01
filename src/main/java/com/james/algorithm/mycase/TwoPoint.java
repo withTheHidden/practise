@@ -4,7 +4,7 @@ package com.james.algorithm.mycase;
 class TwoPoint {
 
     public static void main(String[] args) {
-        int i = maxArea(new int[]{2, 3, 10, 5, 7, 8, 9});
+        int i = maxArea(new int[]{1,1000,1000,6,2,5,4,8,3,7});
         System.out.println(i);
     }
 
@@ -12,55 +12,28 @@ class TwoPoint {
         /**
          * 步骤
          * 1 两个指针分别指向开头和末尾
-         * 2 移动末尾指针,直到第一个大于
+         * 2 移动较小的指针
+         * 3 直到两指针相遇
          */
 
         int left = 0;
         int right = height.length - 1;
         int initHigh = Math.min(height[left], height[right]);
         int initArea = (right - left) * initHigh;
-
-        int pointLeft = 0;
-        int pointRight = height.length - 1;
-        int a = left;
-        int b = right;
-        while (pointLeft < pointRight) {
-            if (b - 1 > a) {
-                int tmpRightHeight = height[b - 1];
-                int high = Math.min(tmpRightHeight, height[a]);
-                int tmpArea = (b - 1 - a) * high;
-                if (tmpArea > initArea) {
-                    initArea = tmpArea;
-                    b = b - 1;
-                    pointRight--;
-
-                     {
-                        b = b ^ a;
-                        a = a ^ b;
-                        b = b ^ a;
-                    }
-                }
+        while (left<right){
+            int leftHigh = height[left];
+            int rightHigh = height[right];
+            if (leftHigh<=rightHigh){
+                left++;
+               int areaTmp = (right - left) * (Math.min(height[left], rightHigh));
+                initArea = Math.max(areaTmp,initArea);
             }
 
-            if (b + 1 < a) {
-                int tmpLeftHeight = height[b + 1];
-                int high = Math.min(tmpLeftHeight, height[a]);
-                int tmpArea = (a - b - 1) * high;
-                if (tmpArea > initArea) {
-                    initArea = tmpArea;
-                    b = b + 1;
-                    pointLeft++;
-
-                     {
-                        b = b ^ a;
-                        a = a ^ b;
-                        b = b ^ a;
-                    }
-                }
+            if (leftHigh>rightHigh){
+                right--;
+                int areaTmp = (right - left) * (Math.min(leftHigh, height[right]));
+                initArea = Math.max(areaTmp,initArea);
             }
-
-
-
         }
         return initArea;
     }
