@@ -7,14 +7,59 @@ import java.util.List;
 
 public class ThreeNumber {
     public static void main(String[] args) {
-        List<List<Integer>> lists = threeSum3(new int[]{-1,0,1,2,-1,-4});
+        List<List<Integer>> lists = threeSum4(null);
         System.out.println(lists);
     }
+
+    //更清晰的逻辑
+    private static List<List<Integer>> threeSum4(int[] arr) {
+        List<List<Integer>> result = new LinkedList<>();
+        if (null==arr||arr.length<3){
+            return result;
+        }
+        Arrays.sort(arr);
+        for (int i = 0; i < arr.length; i++) {
+            //第一个数字去重
+            if (i != 0 && arr[i] == arr[i - 1]) {
+                continue;
+            }
+            int targer = -arr[i];
+            int L = i + 1;
+            int R = arr.length - 1;
+            while (L < R) {
+                if (targer == arr[L] + arr[R]) {
+                    result.add(Arrays.asList(-targer, arr[L], arr[R]));
+                    //去重，注意，L++后，L位于与arr[L]数字相同的,下标最大的数字上
+                    while (arr[L] == arr[L + 1]) {
+                        L++;
+                    }
+                    //去重，注意，R--后，R位于与arr[R]数字相同的,下标最小的数字上,依旧是重复数字
+                    while (arr[R] == arr[R - 1]) {
+                        R--;
+                    }
+                    //相当于for循环++
+                    L++;
+                    //右指针也需要移动一次到新值上
+                    R--;
+                } else if (arr[i] + arr[L] + arr[R] > 0) {
+                    R--;
+                } else if (arr[i] + arr[L] + arr[R] < 0) {
+                    L++;
+                }
+
+            }
+        }
+        return result;
+    }
+
 
     //双指针优化
     // 使用时机，一个数增加会导致另一个数减少
     public static List<List<Integer>> threeSum3(int[] nums) {
         List<List<Integer>> result = new LinkedList<>();
+        if (null==nums||nums.length<3){
+            return result;
+        }
         Arrays.sort(nums);
         for (int i = 0; i < nums.length - 2; i++) {
             int left = nums[i];
@@ -29,7 +74,7 @@ public class ThreeNumber {
                         //保证mid指针在right左
                         while (j < rightPoint && mid + left + nums[rightPoint] > 0) {
                             rightPoint--;
-                            right=nums[rightPoint];
+                            right = nums[rightPoint];
                         }
                         //第二第三指针相等，则没有符合条件的数据
                         if (j == rightPoint) {
@@ -49,6 +94,9 @@ public class ThreeNumber {
     //排序后,三重循环会超时
     public static List<List<Integer>> threeSum2(int[] nums) {
         List<List<Integer>> result = new LinkedList<>();
+        if (null==nums||nums.length<3){
+            return result;
+        }
         Arrays.sort(nums);
         for (int i = 0; i < nums.length - 2; i++) {
             if (i == 0 || (nums[i] != nums[i - 1])) {
