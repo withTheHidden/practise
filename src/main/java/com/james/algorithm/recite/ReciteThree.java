@@ -50,13 +50,13 @@ public class ReciteThree {
     }
 
     //更清晰的逻辑
-    private static List<List<Integer>> threeSum2(int[] arr) {
+    public static List<List<Integer>> threeSum3(int[] arr) {
         List<List<Integer>> result = new LinkedList<>();
-        if (null==arr||arr.length<3){
+        if (null == arr || arr.length < 3) {
             return result;
         }
         Arrays.sort(arr);
-        for (int i = 0; i < arr.length; i++) {
+        for (int i = 0; i < arr.length - 2; i++) {
             //第一个数字去重
             if (i != 0 && arr[i] == arr[i - 1]) {
                 continue;
@@ -64,12 +64,27 @@ public class ReciteThree {
             int targer = -arr[i];
             int L = i + 1;
             int R = arr.length - 1;
-            for (; L < R; L++) {
-                if(targer==arr[L]+arr[R]){
-                    result.add(Arrays.asList(-targer,arr[L],arr[R]));
+            while (L < R) {
+                if (targer == arr[L] + arr[R]) {
+                    result.add(Arrays.asList(-targer, arr[L], arr[R]));
+                    //去重，注意，L++后，L位于与arr[L]数字相同的,下标最大的数字上
+                    while (L<R&&arr[L] == arr[L + 1]) {
+                        L++;
+                    }
+                    //去重，注意，R--后，R位于与arr[R]数字相同的,下标最小的数字上,依旧是重复数字
+                    while (L<R&&arr[R] == arr[R - 1]) {
+                        R--;
+                    }
+                    //相当于for循环++
+                    L++;
+                    //右指针也需要移动一次到新值上
+                    R--;
+                } else if (arr[i] + arr[L] + arr[R] > 0) {
+                    R--;
+                } else if (arr[i] + arr[L] + arr[R] < 0) {
+                    L++;
                 }
-                while (arr[L]==arr[L+1]){L++;}
-                while (arr[R]==arr[R-1]){R--;}
+
             }
         }
         return result;

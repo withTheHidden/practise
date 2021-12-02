@@ -75,7 +75,7 @@ class Solution {
 //        return result;
 //    }
 
-//    public List<List<Integer>> threeSum(int[] nums) {
+    //    public List<List<Integer>> threeSum(int[] nums) {
 //        List<List<Integer>> result = new LinkedList<>();
 //        if (null==nums||nums.length<3){
 //            return result;
@@ -111,15 +111,14 @@ class Solution {
 //        }
 //        return result;
 //    }
-
     //更清晰的逻辑
-    private static List<List<Integer>> threeSum(int[] arr) {
+    public List<List<Integer>> threeSum(int[] arr) {
         List<List<Integer>> result = new LinkedList<>();
-     if (null==arr||arr.length<3){
-        return result;
-    }
+        if (null == arr || arr.length < 3) {
+            return result;
+        }
         Arrays.sort(arr);
-        for (int i = 0; i < arr.length-2; i++) {
+        for (int i = 0; i < arr.length - 2; i++) {
             //第一个数字去重
             if (i != 0 && arr[i] == arr[i - 1]) {
                 continue;
@@ -131,11 +130,11 @@ class Solution {
                 if (targer == arr[L] + arr[R]) {
                     result.add(Arrays.asList(-targer, arr[L], arr[R]));
                     //去重，注意，L++后，L位于与arr[L]数字相同的,下标最大的数字上
-                    while (arr[L] == arr[L + 1]) {
+                    while (L<R&&arr[L] == arr[L + 1]) {
                         L++;
                     }
                     //去重，注意，R--后，R位于与arr[R]数字相同的,下标最小的数字上,依旧是重复数字
-                    while (arr[R] == arr[R - 1]) {
+                    while (L<R&&arr[R] == arr[R - 1]) {
                         R--;
                     }
                     //相当于for循环++
