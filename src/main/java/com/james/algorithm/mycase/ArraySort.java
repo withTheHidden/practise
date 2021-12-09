@@ -5,7 +5,6 @@ import java.util.Collections;
 
 public class ArraySort {
     //!!
-    // 注意牵扯到数组的时候,使用下标相加是错误的,因为如果两个容量为1 的数组组合成一个大数组.较大的数字下标使用 0+0 =0 是错误的
     // 对于数组,终止条件非常重要
     public static void main(String[] args) {
         int[] ints = {1, 3, 5, 0, 0};
