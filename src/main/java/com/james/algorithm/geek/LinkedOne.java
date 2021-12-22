@@ -282,3 +282,51 @@ class linkTwoLink{
         return result.next;
     }
 }
+
+//删除倒数第n个节点
+class deleteBackNumberNode{
+    public static void main(String[] args) {
+        Link link = new Link('1');
+        link.next = new Link('2');
+        link.next.next = new Link('4');
+
+
+
+        Link test = test( link,4);
+        System.out.println(test);
+
+    }
+
+    private static Link test(Link link,int number) {
+        if (link==null||link.next==null){
+            return null;
+        }
+        if (number==0){
+            return link;
+        }
+        Link fast = link;
+        Link slow = link;
+        int num =number;
+        while (num>1){
+            fast =fast.next;
+            num--;
+        }
+        if (fast==null){
+            return link;
+        }
+
+        Link tmp = slow;
+        while (fast.next!=null){
+            fast =fast.next;
+            tmp = slow;
+            slow = slow.next;
+        }
+        if (tmp==slow){
+            link = link.next;
+        }else
+       tmp.setNext(slow.next);
+        return  link;
+
+
+    }
+}

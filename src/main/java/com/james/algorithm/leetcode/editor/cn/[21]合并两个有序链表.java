@@ -51,6 +51,11 @@
 //class Solution {
 //    public ListNode mergeTwoLists(ListNode list1, ListNode list2) {
 //
+//        //可以不要
+//        if (list1==null||list2==null){
+//            return list1==null?list2:list1;
+//        }
+//
 //        ListNode first = list1;
 //        ListNode second = list2;
 //
