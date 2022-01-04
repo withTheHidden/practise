@@ -66,25 +66,22 @@ class Solution {
     public boolean backspaceCompare(String s, String t) {
         StringBuilder stringBuilder1 = new StringBuilder();
         StringBuilder stringBuilder2 = new StringBuilder();
-        for (int i = 0; i < s.length(); i++) {
-            if (s.charAt(i)!='#'){
-                stringBuilder1.append(s.charAt(i));
-            }else if (stringBuilder1.length()>0){
-                stringBuilder1.deleteCharAt(stringBuilder1.length()-1);
-            }
-        }
-        for (int i = 0; i < t.length(); i++) {
-            if (t.charAt(i)!='#'){
-                stringBuilder2.append(t.charAt(i));
-            }else if (stringBuilder2.length()>0) {
-                stringBuilder2.deleteCharAt(stringBuilder2.length()-1);
-            }
-        }
-
+        stackMethod(s, stringBuilder1);
+        stackMethod(t, stringBuilder2);
         if (stringBuilder2.length()!=stringBuilder2.length()){
             return false;
         }
         return stringBuilder1.toString().equals(stringBuilder2.toString());
+    }
+
+    private void stackMethod(String s, StringBuilder stringBuilder1) {
+        for (int i = 0; i < s.length(); i++) {
+            if (s.charAt(i) != '#') {
+                stringBuilder1.append(s.charAt(i));
+            } else if (stringBuilder1.length() > 0) {
+                stringBuilder1.deleteCharAt(stringBuilder1.length() - 1);
+            }
+        }
     }
 }
 //leetcode submit region end(Prohibit modification and deletion)
