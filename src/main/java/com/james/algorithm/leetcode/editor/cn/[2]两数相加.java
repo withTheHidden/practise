@@ -43,6 +43,7 @@
 //
 ////leetcode submit region begin(Prohibit modification and deletion)
 //
+//
 ///**
 // * Definition for singly-linked list.
 // * public class ListNode {
@@ -54,34 +55,57 @@
 // * }
 // */
 //class Solution {
+//    //f(n) = f(n) + f(n-1)/10
+//    //f(1) = l1+l2
+//    // l1 = 0 or l1 ,  l2 = 0 or l2
 //    public ListNode addTwoNumbers(ListNode l1, ListNode l2) {
-//        ListNode node = new ListNode();
-//        ListNode head = node;
-//        int nextNum = 0;
-//        while (null != l1.next) {
-//            int val1 = l1.val;
-//            int val2 = l2.val;
-//            int one = (val1 + val2) % 10;
-//            node.val = one;
-//            node.next = new ListNode();
+//        if (l1 == null || l2 == null) {
+//            return l1 == null ? l2 : l1;
 //        }
+//        ListNode listNode = new ListNode();
+//        ListNode head = new ListNode();
+//        head.next = listNode;
+//
+//        int add = 0;
+//        while (null != l1 && null != l2) {
+//            int sumTmp = l1.val + l2.val + add;
+//            listNode.val = sumTmp % 10;
+//            add = sumTmp / 10;
+//            l1 = l1.next;
+//            l2 = l2.next;
+//            if (null == l1 || null == l2) {
+//                continue;
+//            }
+//            listNode.next = new ListNode();
+//            listNode = listNode.next;
+//        }
+//        if (l1 != null) {
+//            while (null != l1){
+//                listNode.next = new ListNode();
+//                listNode = listNode.next;
+//                int sumTmp = l1.val + add;
+//                listNode.val = sumTmp % 10;
+//                add = sumTmp / 10;
+//                l1 = l1.next;
+//
+//            }
+//        }
+//        if (l2 != null) {
+//            while (null != l2){
+//                listNode.next = new ListNode();
+//                listNode = listNode.next;
+//                int sumTmp = l2.val + add;
+//                listNode.val = sumTmp % 10;
+//                add = sumTmp / 10;
+//                l2 = l2.next;
+//            }
+//        }
+//        if (add!=0){
+//            listNode.next = new ListNode(add);
+//        }
+//
+//        return head.next;
 //    }
 //}
 //
 ////leetcode submit region end(Prohibit modification and deletion)
-//class ListNode {
-//    int val;
-//    ListNode next;
-//
-//    ListNode() {
-//    }
-//
-//    ListNode(int val) {
-//        this.val = val;
-//    }
-//
-//    ListNode(int val, ListNode next) {
-//        this.val = val;
-//        this.next = next;
-//    }
-//}
