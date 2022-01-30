@@ -131,4 +131,15 @@ class ListNode {
         this.val = val;
         this.next = next;
     }
+
+    @Override
+    public String toString() {
+        StringBuilder stringBuilder = new StringBuilder(String.valueOf(val));
+        ListNode node = next;
+        while (node!=null){
+            stringBuilder.append(node.val);
+            node = node.next;
+        }
+        return stringBuilder.toString();
+    }
 }
