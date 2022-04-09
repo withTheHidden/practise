@@ -103,6 +103,7 @@
 //    int right = 0;
 //    int tmp = 0;
 //    int result = 0;
+//    //这个循环一遍对 right生效,一边又对left生效
 //    while (right<str.length()){
 //        if (set.add(str.charAt(right))){
 //            right++;
@@ -115,5 +116,33 @@
 //    }
 //    return result;
 //}
+//
+//    public int lengthOfLongestSubstring3(String s) {
+//        if (s.length() == 1){
+//            return 1;
+//        }
+//        if (null == s){
+//            return 0;
+//        }
+//        int a = 0;
+//        int b = 0;
+//        char[] chars = s.toCharArray();
+//        HashSet<Character> set = new HashSet<>();
+//        int len = 0;
+//        while (a < s.length()-1) {
+//
+//            //如果map含有下一个数字,则前进数字b知道map不包含下一个数字
+//            while (set.contains(chars[a]) && b < a) {
+//                set.remove(chars[b]);
+//                b++;
+//            }
+//            set.add(chars[a]);
+//            a++;
+//            len = a - b + 1>len?a-b+1:len;
+//
+//        }
+//
+//        return len;
+//    }
 //}
 ////leetcode submit region end(Prohibit modification and deletion)

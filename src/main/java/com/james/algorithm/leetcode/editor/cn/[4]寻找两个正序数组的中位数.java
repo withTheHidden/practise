@@ -61,38 +61,45 @@
 //
 ////leetcode submit region begin(Prohibit modification and deletion)
 //class Solution {
-//    //时间 m+n,空间 m+n
+//    //因为是两个有序数组,直接 归并合并
 //    public static double findMedianSortedArrays(int[] nums1, int[] nums2) {
-//
-//        int length1 = nums1.length;
-//        int length2 = nums2.length;
-//        int[] merger = new  int[length1 + length2];
+//        //用来保存合并后数据
+//        int[] result = new int[nums1.length+nums2.length];
 //        int i = 0;
-//        int k = 0;
-//        int cur;
-//        while (i< length1 ||k< length2){
-//            if (i==length1){
-//                cur = nums2[k];
-//                k++;
-//            }else if (k==length2){
-//                cur = nums1[i];
-//                i++;
-//            }else if (nums1[i]<nums2[k]){
-//                cur=nums1[i];
+//        int j = 0;
+//        int index = 0;
+//        while (i<nums1.length && j<nums2.length){
+//            //nums的数据小于nums2,则放入result数组
+//            if (nums1[i]<nums2[j]){
+//                result[index] = nums1[i];
+//                index++;
 //                i++;
 //            }else {
-//                cur=nums2[k];
-//                k++;
+//                result[index] = nums2[j];
+//                index++;
+//                j++;
 //            }
-//            merger[i+k-1]=cur;
 //        }
-//        if(merger.length%2==0){
-//            return (merger[(length1+length2)/2-1]+merger[(length1+length2)/2])/2.0;
-//        }else {
-//            return merger[(length1+length2)/2];
-//        }
-//    }
-//    //逆向
 //
+//        //有一个数组已经完成遍历:nums1,遍nums2的数字加入result数组
+//        if (i>=nums1.length)
+//        {
+//            while (index<result.length){
+//                result[index++] = nums2[j++];
+//            }
+//        }else {
+//            while (index<result.length){
+//                result[index++] = nums1[i++];
+//            }
+//        }
+//
+//        //找到中位数,偶数even,奇数odd
+//        boolean odd = (result.length%2==1);
+//        //注意,此处的index = result.length
+//        int mid = index / 2;
+//        // 注意返回的是double 要除以2.0才对.
+//        // 注意 index = result.length,所以 mid -1
+//        return odd?(result[mid]):(result[mid-1]+result[mid])/2.0;
+//    }
 //}
 ////leetcode submit region end(Prohibit modification and deletion)

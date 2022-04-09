@@ -59,53 +59,69 @@
 //    //f(1) = l1+l2
 //    // l1 = 0 or l1 ,  l2 = 0 or l2
 //    public ListNode addTwoNumbers(ListNode l1, ListNode l2) {
-//        if (l1 == null || l2 == null) {
-//            return l1 == null ? l2 : l1;
+//        //判空
+//        if (null == l1||null ==l2){
+//            return l1==null?l2:l1;
 //        }
-//        ListNode listNode = new ListNode();
-//        ListNode head = new ListNode();
-//        head.next = listNode;
+//        //进位
+//        int tmp = 0;
+//        ListNode result = new ListNode();
+//        ListNode list = result;
+//        //l1 和 l2 必不为null
+//        while (null != l1 && null != l2){
+//            //该节点要存储的数据
+//            int num = l1.val + l2.val + tmp;
+//            tmp = 0;
+//            //进位则置tmp为1,并对num取余数
+//            if (num>=10){
+//                num = num%10;
+//                tmp = 1;
+//            }
+//            list.next = new ListNode();
+//            list = list.next;
+//            list.val = num;
 //
-//        int add = 0;
-//        while (null != l1 && null != l2) {
-//            int sumTmp = l1.val + l2.val + add;
-//            listNode.val = sumTmp % 10;
-//            add = sumTmp / 10;
 //            l1 = l1.next;
 //            l2 = l2.next;
-//            if (null == l1 || null == l2) {
-//                continue;
-//            }
-//            listNode.next = new ListNode();
-//            listNode = listNode.next;
-//        }
-//        if (l1 != null) {
-//            while (null != l1){
-//                listNode.next = new ListNode();
-//                listNode = listNode.next;
-//                int sumTmp = l1.val + add;
-//                listNode.val = sumTmp % 10;
-//                add = sumTmp / 10;
-//                l1 = l1.next;
-//
-//            }
-//        }
-//        if (l2 != null) {
-//            while (null != l2){
-//                listNode.next = new ListNode();
-//                listNode = listNode.next;
-//                int sumTmp = l2.val + add;
-//                listNode.val = sumTmp % 10;
-//                add = sumTmp / 10;
-//                l2 = l2.next;
-//            }
-//        }
-//        if (add!=0){
-//            listNode.next = new ListNode(add);
 //        }
 //
-//        return head.next;
+//        while (null!=l1){
+//            //该节点要存储的数据
+//            int num = l1.val +  tmp;
+//            tmp = 0;
+//            //进位则置tmp为1,并对num取余数
+//            if (num>=10){
+//                num = num%10;
+//                tmp = 1;
+//            }
+//            list.next = new ListNode();
+//            list = list.next;
+//            list.val = num;
+//            l1 = l1.next;
+//        }
+//        while (null!=l2){
+//            //该节点要存储的数据
+//            int num = l2.val +  tmp;
+//            tmp=0;
+//            //进位则置tmp为1,并对num取余数
+//            if (num>=10){
+//                num = num%10;
+//                tmp = 1;
+//            }
+//            list.next = new ListNode();
+//            list = list.next;
+//            list.val = num;
+//            l2 = l2.next;
+//        }
+//
+//        if (tmp==1){
+//            list.next = new ListNode();
+//            list = list.next;
+//            list.val = tmp;
+//        }
+//        return result.next;
 //    }
+//
 //}
 //
 ////leetcode submit region end(Prohibit modification and deletion)

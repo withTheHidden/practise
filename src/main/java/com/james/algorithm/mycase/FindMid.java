@@ -16,7 +16,7 @@ public class FindMid {
 
         int left1 = length1 / 2;
         int left2 = length2 / 2;
-        if (nums1[left1] > nums2[left2]) {
+        if (nums1[left1] >= nums2[left2]) {
             return find(nums2, nums1, left2, left1);
         } else if (nums1[left1] < nums2[left2]) {
             return find(nums1, nums2, left1, left2);
@@ -32,7 +32,7 @@ public class FindMid {
             int tmp2 = arr2[left2];
             int sum = tmp1 + tmp2;
 
-            if (tmp1 * 2 < sum ) {
+            if (tmp1 * 2 <= sum ) {
                 left1++;
                 if (left1>arr1.length-1){
                     return ((double) (arr1[arr1.length-1] + arr2[left2])) / 2.0;
@@ -45,8 +45,6 @@ public class FindMid {
                 }
 
             }
-
-
         }
         return ((double) (arr1[left1] + arr2[left2])) / 2.0;
     }

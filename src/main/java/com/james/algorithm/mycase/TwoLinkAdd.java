@@ -4,7 +4,7 @@ import java.util.List;
 
 public class TwoLinkAdd {
     public static void main(String[] args) {
-        ListNode listNode = add2(new ListNode(9,9,9,9,9,9,9), new ListNode(9,9,9,9));
+        ListNode listNode = addTwoNumbers(new ListNode(9,9,9,9,9,9,9), new ListNode(9,9,9,9));
         while (listNode != null) {
             System.out.print(listNode.val + " ");
             listNode = listNode.next;
