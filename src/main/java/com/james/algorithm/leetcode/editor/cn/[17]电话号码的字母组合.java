@@ -67,6 +67,7 @@
 //        for (int i = 0; i < map_string.length(); i++) {
 //            stringBuilder.append(map_string.charAt(i));
 //            iterStr(digits, stringBuilder, index + 1);
+//            //去掉路径上面添加的字母
 //            stringBuilder.deleteCharAt(stringBuilder.length()-1);
 //        }
 //    }

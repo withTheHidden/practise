@@ -6,15 +6,16 @@ public class NumberBound {
 
     //所有组合一般想到 回溯法,虽然我的方法也很新颖
     public static void main(String[] args) {
-        List<String> bound = bound2("2");
+
+        List<String> bound = letterCombinations("13");
         System.out.println(bound);
     }
 
 
     //回溯法速度快
-    List<String> res = new LinkedList<>();
-    String[] letterMap = {" ","*", "abc", "def", "ghi", "jkl", "mon", "pqrs", "tuv", "wxyz"};
-    public List<String> letterCombinations(String digits) {
+   static List<String> res = new LinkedList<>();
+   static   String[] letterMap = {" ","*", "abc", "def", "ghi", "jkl", "mon", "pqrs", "tuv", "wxyz"};
+    public static List<String> letterCombinations(String digits) {
         if (null == digits || digits.length() == 0) {
             return new ArrayList<>();
         }
@@ -22,7 +23,7 @@ public class NumberBound {
         return res;
     }
 
-    private void iterStr(String digits, StringBuilder stringBuilder, int index) {
+    private static void iterStr(String digits, StringBuilder stringBuilder, int index) {
         if (digits.length() == index) {
             res.add(stringBuilder.toString());
             return;

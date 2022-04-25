@@ -51,6 +51,7 @@
 ////leetcode submit region begin(Prohibit modification and deletion)
 //class Solution {
 //    //核心在于理解双指针,并理解移动指针导致面积的大小变化
+//    // 移动长板一定变小,移动短板不一定变大变小
 //    public static int maxArea(int[] height) {
 //        int left = 0;
 //        int right =  (height.length - 1);
